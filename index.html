@@ -7,8 +7,9 @@
       
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
       
+            <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+      
         <style type="text/css">
-              <style type="text/css">
       
                 body { height: 100%; 
 		              <!--background-image:url(IMAGE);-->
@@ -19,31 +20,40 @@
                 #wrapper    { width:900px; margin:10px auto;
 			   			       background-color:#FFF; 
                                 padding:0 40px; }
-                #info ul li	{   list-style-type:none;   
-                                }
                 #map-canvas {	float:left;
                             }
-		        #info	  {   float:right;	
-                                background-color:#C0C0C0;
-                                width:220px;
-                            }
-				
+		        
             
         </style>
       
         <script type="text/javascript">
       
+        // Enable the visual refresh
+                        google.maps.visualRefresh = true;    
         var map;        
             function initialize() {
+                var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
                 var mapOptions = {
-                                    zoom: 15,
-                                    center: new google.maps.LatLng(X,Y),            //X,Y ARE THE COORDINATES OF A LOCATION 
-                                    mapTypeId: google.maps.MapTypeId.HYBRID
-                                  };
+                        center: myLatlng,
+                        zoom: 13,
+                        mapTypeControl: true,
+                        mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+                        navigationControl: true,
+                        navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                        mapTypeId: google.maps.MapTypeId.HYBRID
+                                    };
                
+                
                 map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-             
+                var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title: 'Hello World!'
+                                 });
             } 
+            
+            
+            
             google.maps.event.addDomListener(window, 'load', initialize);   
         </script>       
       
@@ -53,23 +63,8 @@
 <body onLoad='initialize()'>
      <div id = "wrapper">
                 <h1>EVENT MAP INFO.</h1>  
-                <div id="map-canvas" style='width:600px;height:450px'></div>
-	               
-               <div id="info" >
-		      <ul >
-		          <li>EVENT 1 LOCATION</li>
-                  <br>
-		          <li>EVENT 2 LOCATION</li>
-		          <br>
-                  <li>EVENT 3 LOCATION</li>
-		          <br>
-                  <li>EVENT 4 LOCATION</li>
-		          <br>
-                  <li>EVENT 5 LOCATION</li>
-                  <br>
-                </ul>
-            
-               </div>
+                <div id="map-canvas" style='width:700px;height:550px'></div>
+	       
            
       </div>
     
